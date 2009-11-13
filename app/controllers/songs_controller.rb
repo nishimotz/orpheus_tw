@@ -40,7 +40,7 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.xml
   def create
-    #composition = Song.compose(params[:song]["text"])
+    composition = Song.compose(params[:song]["text"])
     #params[:song]["composition"] = composition
     @song = Song.new(params[:song])
     respond_to do |format|
