@@ -40,12 +40,13 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.xml
   def create
-    composition = Song.compose(params[:song]["text"])
+    #composition = Song.compose(params[:song]["text"])
     #params[:song]["composition"] = composition
     @song = Song.new(params[:song])
     respond_to do |format|
       if @song.save
         flash[:notice] = 'Song was successfully created.'
+        Delayed::Job.enqueue @song
         format.html { redirect_to(@song) }
         format.xml  { render :xml => @song, :status => :created, :location => @song }
       else
