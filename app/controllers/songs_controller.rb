@@ -40,8 +40,9 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.xml
   def create
+    composition = Song.compose(params[:song]["text"])
+    params[:song]["composition"] = composition
     @song = Song.new(params[:song])
-    @song.compose
     respond_to do |format|
       if @song.save
         flash[:notice] = 'Song was successfully created.'

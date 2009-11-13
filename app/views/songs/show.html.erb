@@ -2,7 +2,14 @@
 <%= @song.text %>
 </p>
 <p>
-<%= @song.compose_id %>
+<%= @song.composition %>
+</p>
+<p>
+<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?sound=<%= @song.composition %>">sound</a>
+</p>
+<p>
+<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?score=<%= @song.composition %>">score</a>
+</p>
 </p>
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>

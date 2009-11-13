@@ -2,8 +2,9 @@
 require 'mechanize'
 
 class Song < ActiveRecord::Base
-  def compose
-    lyric = @text
+  def Song.compose(lyric)
+    #lyric = @text
+    #lyric = "今日はいい天気です。"
     agent = WWW::Mechanize.new
     page = agent.get('http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi')
     form = page.forms.find{|f| f.name == 'orpheus_form'}
@@ -20,7 +21,6 @@ class Song < ActiveRecord::Base
     #puts result2_page.body
     #result2_page.fields.each{ |f| puts f.name + " " + f.value.to_s }
     f = result2_page.forms.find{|f| f.action == "../automatic-composition/enquete.cgi"}
-    @compose_id = f.fields.find{|f| f.name == "compositionid"}.value
-    #puts @compose_id
+    f.fields.find{|f| f.name == "compositionid"}.value
   end
 end
