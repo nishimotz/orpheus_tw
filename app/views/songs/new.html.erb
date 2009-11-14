@@ -1,14 +1,27 @@
-<h1>New song</h1>
+<h1>orpheus_tw</h1>
 
 <% form_for(@song) do |f| %>
   <%= f.error_messages %>
-
   <p>
-    <%= f.text_field :text %>
+    歌詞 <br />
+    <%= f.text_area :text, :cols => 20, :rows => 5 %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit '作曲する' %>
   </p>
 <% end %>
 
+<% if false %>
 <%= link_to 'Back', songs_path %>
+<% end %>
+
+<a name="about"></a>
+<h2>これは何？</h2>
+
+<p>
+orpheus_tw は、東京大学「自動作曲システム オルフェウス」で作曲された曲を Twitter の @orpheus_tw でつぶやいてくれるシステムです。
+orpheus_tw は @nishimotz が開発・運用しています。無保証です。オルフェウスの運用に支障が生じる場合、Twitter の利用規約を遵守できない場合など、予告なしに運用を中止・終了することがあります。
+</p>
+
+<p><a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi">powered by orpheus</a></p>
+

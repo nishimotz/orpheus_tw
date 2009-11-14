@@ -1,15 +1,31 @@
+<% unless @song.composition %>
+
+<p>作曲しています。しばらくお待ちください。</p>
 <p>
 <%= @song.text %>
 </p>
+<%= link_to '再読み込み', :controller => 'songs', :action => 'show', :id => @song.id %>
+<% else %>
+
+<p>作曲された歌です</p>
 <p>
-<%= @song.composition %>
+Tweet: <%= @song.text %> http://localhost:3000/songs/<%= @song.id %>
+</p>
+
+<p>
+<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?sound=<%= @song.composition %>&amp;_format=dummy.mp3">曲を聞く</a>
 </p>
 <p>
-<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?sound=<%= @song.composition %>">sound</a>
+<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?score=<%= @song.composition %>&amp;_format=dummy.gif">楽譜を見る</a>
+<p><%= link_to 'もっと作曲する', :action => 'new'%></p>
+<% end %>
+
 </p>
-<p>
-<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?score=<%= @song.composition %>">score</a>
-</p>
-</p>
+<% if false %>
+<p><%= @song.composition %></p>
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>
+<% end %>
+
+
+

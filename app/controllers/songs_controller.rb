@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.xml
   def index
-    @songs = Song.all
+    @songs = Song.find(:all, :limit => 10, :order => 'id desc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,16 +40,20 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.xml
   def create
-    #composition = Song.compose(params[:song]["text"])
-    #params[:song]["composition"] = composition
+    if params[:song]["text"] == ''
+      flash[:notice] = '歌詞を入力してください'
+      redirect_to :action => "new"
+      return
+    end
+    params[:song]["composition"] = nil
     @song = Song.new(params[:song])
     respond_to do |format|
       if @song.save
-        flash[:notice] = 'Song was successfully created.'
         Delayed::Job.enqueue @song
         format.html { redirect_to(@song) }
         format.xml  { render :xml => @song, :status => :created, :location => @song }
       else
+        flash[:notice] = '作曲またはツイートに失敗しました'
         format.html { render :action => "new" }
         format.xml  { render :xml => @song.errors, :status => :unprocessable_entity }
       end
