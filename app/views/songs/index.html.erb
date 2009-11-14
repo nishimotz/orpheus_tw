@@ -6,14 +6,9 @@
 <% @songs.each do |song| %>
   <li>
     <%= song.id %> : <%= link_to song.text, song %>
-<% if false %>
-    <td><%= song.text %></td>
-    <td><%= song.composition %></td>
-    <td><%= link_to 'Edit', edit_song_path(song) %></td>
-    <td><%= link_to 'Destroy', song, :confirm => 'Are you sure?', :method => :delete %></td>
-<% end %>
   </li>
 <% end %>
 </ul>
 
-<a href="/songs/new#about">これは何？</a>
+<p><a href="/songs/new#about">これは何？</a></p>
+

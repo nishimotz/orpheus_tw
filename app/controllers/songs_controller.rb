@@ -1,3 +1,5 @@
+require 'kconv'
+
 class SongsController < ApplicationController
   # GET /songs
   # GET /songs.xml
@@ -45,6 +47,8 @@ class SongsController < ApplicationController
       redirect_to :action => "new"
       return
     end
+    params[:song]["text"] = Kconv.kconv(params[:song]["text"], Kconv::UTF8)
+    params[:song]["comment"] = Kconv.kconv(params[:song]["comment"], Kconv::UTF8)
     params[:song]["composition"] = nil
     @song = Song.new(params[:song])
     respond_to do |format|

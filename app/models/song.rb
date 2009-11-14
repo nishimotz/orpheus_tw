@@ -1,5 +1,13 @@
-# require 'rubygems'
+require 'rubygems'
 require 'mechanize'
+gem 'twitter4r', '>=0.3.1'
+require 'twitter'
+#require 'twitter/console'
+require 'time'
+#require 'yaml'
+
+#USERNAME = 'orpheus_tw'
+#PASSWORD = 'c7CYqDyx'
 
 class Song < ActiveRecord::Base
   def perform
@@ -22,5 +30,13 @@ class Song < ActiveRecord::Base
     f = result2_page.forms.find{|f| f.action == "../automatic-composition/enquete.cgi"}
     self.composition = f.fields.find{|f| f.name == "compositionid"}.value
     save!
+    
+    twitter = Twitter::Client.from_config( "#{RAILS_ROOT}/config/tw_conf.yml",'orpheus_tw')
+    status = twitter.status(:post, self.tweet)
+  end
+  
+  def tweet
+    self.text + " " + self.comment + " http://orpheus-tw.heroku.com/songs/#{self.id.to_s}"
   end
 end
+
