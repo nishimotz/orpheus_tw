@@ -6,9 +6,6 @@ require 'twitter'
 require 'time'
 #require 'yaml'
 
-#USERNAME = 'orpheus_tw'
-#PASSWORD = 'c7CYqDyx'
-
 class Song < ActiveRecord::Base
   def perform
     lyric = self.text
