@@ -1,24 +1,24 @@
 <% unless @song.composition %>
 
 <p>作曲しています。しばらくお待ちください。</p>
-<p>歌詞：<%= @song.text %></p>
-<p>コメント：<%= @song.comment %></p>
+<p>歌詞：<%=h @song.text %></p>
+<p>コメント：<%=h @song.comment %></p>
 <%= link_to '再読み込み', :controller => 'songs', :action => 'show', :id => @song.id %>
 
 <% else %>
 
-<p>歌詞：<%= @song.text %></p>
-<p>コメント：<%= @song.comment %></p>
+<p>歌詞：<%=h @song.text %></p>
+<p>コメント：<%=h @song.comment %></p>
 <p>
-<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?sound=<%= @song.composition %>&amp;_format=_.mp3">曲を聞く</a>
+<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?sound=<%=h @song.composition %>&amp;_format=_.mp3">曲を聞く</a>
 </p>
 <p>
-<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?score=<%= @song.composition %>&amp;_format=_.gif">楽譜を見る</a>
+<a href="http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi?score=<%=h @song.composition %>&amp;_format=_.gif">楽譜を見る</a>
 </p>
-<p><%= link_to 'もっと作曲する', :action => 'new'%></p>
+<p><a href="/">もっと作曲する</a></p>
 
 <% end %>
 
-<p><a href="/songs/new#about">これは何？</a></p>
+<p><a href="/#about">これは何？</a></p>
 
 

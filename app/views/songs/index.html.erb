@@ -5,10 +5,10 @@
 <ul>
 <% @songs.each do |song| %>
   <li>
-    <%= song.id %> : <%= link_to song.text, song %>
+    <%= song.id %> : <%= link_to h(song.text), song %>
   </li>
 <% end %>
 </ul>
 
-<p><a href="/songs/new#about">これは何？</a></p>
+<p><a href="/#about">これは何？</a></p>
 
