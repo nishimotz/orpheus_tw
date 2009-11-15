@@ -12,7 +12,8 @@ class Song < ActiveRecord::Base
     #begin
     #  timeout(60) do
         twitter = Twitter::Client.from_config( "#{RAILS_ROOT}/config/tw_conf.yml",'orpheus_tw')
-        twitter.status(:post, self.tweet)
+        twitter.status(:post, "発声練習")
+        #twitter.status(:post, self.tweet)
         
         lyric = self.text
         agent = WWW::Mechanize.new
