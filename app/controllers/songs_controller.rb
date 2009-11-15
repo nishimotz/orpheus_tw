@@ -50,6 +50,8 @@ class SongsController < ApplicationController
     params[:song]["text"] = Kconv.kconv(params[:song]["text"], Kconv::UTF8)
     params[:song]["comment"] = Kconv.kconv(params[:song]["comment"], Kconv::UTF8)
     params[:song]["composition"] = nil
+    params[:song]["remoteip"] = request.remote_ip
+    params[:song]["useragent"] = request.user_agent
     @song = Song.new(params[:song])
     respond_to do |format|
       if @song.save

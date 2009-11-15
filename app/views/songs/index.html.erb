@@ -5,7 +5,7 @@
 <ul>
 <% @songs.each do |song| %>
   <li>
-    <%= song.id %> : <%= link_to h(song.text), song %>
+    <%= song.id %> : "<%= link_to h(song.text), song %>", "<%=h song.comment %>", "<%=h song.useragent %>", "<%=h song.remoteip %>"
   </li>
 <% end %>
 </ul>
