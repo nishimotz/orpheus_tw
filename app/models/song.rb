@@ -33,7 +33,19 @@ class Song < ActiveRecord::Base
   end
   
   def tweet
-    self.text + " " + self.comment + " http://orpheus-tw.heroku.com/songs/#{self.id.to_s}"
+    msg = self.text + " " + self.comment
+    url = " http://orpheus-tw.heroku.com/songs/#{self.id.to_s}"
+    s = msg + url
+    len = s.chars.count
+    if len > 140
+      n = len - 138
+      s1 = msg
+      s2 = ''
+      s1.each_char { |c| if n > 0 then n -= 1 else s2 += c end }
+      s2 += '..'
+      s = s2 + url
+    end
+    s
   end
 end
 
