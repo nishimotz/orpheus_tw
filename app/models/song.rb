@@ -32,7 +32,7 @@ class Song < ActiveRecord::Base
         save!
         
         twitter = Twitter::Client.from_config( "#{RAILS_ROOT}/config/tw_conf.yml",'orpheus_tw')
-        status = twitter.status(:post, self.tweet)
+        twitter.status(:post, self.tweet)
       end
     rescue TimeoutError
       self.composition = '0'
