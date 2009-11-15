@@ -11,10 +11,6 @@ class Song < ActiveRecord::Base
   def perform
     #begin
     #  timeout(60) do
-        twitter = Twitter::Client.from_config( "#{RAILS_ROOT}/config/tw_conf.yml",'orpheus_tw')
-        twitter.status(:post, "発声練習")
-        #twitter.status(:post, self.tweet)
-        
         lyric = self.text
         agent = WWW::Mechanize.new
         page = agent.get('http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi')
@@ -34,6 +30,10 @@ class Song < ActiveRecord::Base
         f = result2_page.forms.find{|f| f.action == "../automatic-composition/enquete.cgi"}
         self.composition = f.fields.find{|f| f.name == "compositionid"}.value
         save!
+        
+        twitter = Twitter::Client.from_config( "#{RAILS_ROOT}/config/tw_conf.yml",'orpheus_tw')
+        twitter.status(:post, "発声練習")
+        #twitter.status(:post, self.tweet)
         
     #  end
     #rescue TimeoutError
