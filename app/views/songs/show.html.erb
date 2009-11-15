@@ -1,9 +1,16 @@
-<% unless @song.composition %>
+<% if @song.composition == nil %>
 
 <p>作曲しています。しばらくお待ちください。</p>
 <p>歌詞：<%=h @song.text %></p>
 <p>コメント：<%=h @song.comment %></p>
 <%= link_to '再読み込み', :controller => 'songs', :action => 'show', :id => @song.id %>
+
+<% elsif @song.composition == '0' %>
+
+<p>作曲またはツイートに失敗しました。</p>
+<p>歌詞：<%=h @song.text %></p>
+<p>コメント：<%=h @song.comment %></p>
+<p><a href="/">もう一度作曲する</a></p>
 
 <% else %>
 
