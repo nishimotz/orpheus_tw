@@ -5,12 +5,12 @@ require 'twitter'
 #require 'twitter/console'
 require 'time'
 #require 'yaml'
-require 'timeout'
+#require 'timeout'
 
 class Song < ActiveRecord::Base
   def perform
-    begin
-      timeout(60) do
+    #begin
+    #  timeout(60) do
         lyric = self.text
         agent = WWW::Mechanize.new
         page = agent.get('http://orpheus.hil.t.u-tokyo.ac.jp/automatic-composition/index.cgi')
@@ -33,11 +33,11 @@ class Song < ActiveRecord::Base
         
         twitter = Twitter::Client.from_config( "#{RAILS_ROOT}/config/tw_conf.yml",'orpheus_tw')
         twitter.status(:post, self.tweet)
-      end
-    rescue TimeoutError
-      self.composition = '0'
-      save!
-    end
+    #  end
+    #rescue TimeoutError
+    #  self.composition = '0'
+    #  save!
+    #end
   end
   
   def tweet
