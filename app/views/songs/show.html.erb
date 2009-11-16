@@ -1,6 +1,6 @@
 <% if @song.composition == nil %>
 
-<p>作曲しています。しばらくお待ちください。</p>
+<p>作曲しています。約30秒お待ちください。</p>
 <p>歌詞：<%=h @song.text %></p>
 <p>コメント：<%=h @song.comment %></p>
 <%= link_to '再読み込み', :controller => 'songs', :action => 'show', :id => @song.id %>

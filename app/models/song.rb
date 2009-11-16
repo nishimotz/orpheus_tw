@@ -43,6 +43,7 @@ class Song < ActiveRecord::Base
   
   def tweet
     msg = self.text + " " + self.comment
+    msg = msg.gsub(/\#/,' ').gsub(/\@/,' ')
     url = " http://orpheus-tw.heroku.com/songs/#{self.id.to_s}"
     s = msg + url
     #len = s.chars.count
