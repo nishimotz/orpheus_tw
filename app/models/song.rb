@@ -19,9 +19,9 @@ class Song < ActiveRecord::Base
         form.fields.find{|f| f.name == 'lyric'}.value = lyric
         form.fields.find{|f| f.name == 'lyric1'}.value = lyric
         form.fields.find{|f| f.name == 'compose'}.value = 'yes'
-        form.fields.find{|f| f.name == 'genre'}.value = '1'
-        form.fields.find{|f| f.name == 'voice'}.value = '1'
-        form.fields.find{|f| f.name == 'tempo'}.value = '0'
+        form.fields.find{|f| f.name == 'genre'}.value = (rand(6)+1).to_s # '1'..'6'
+        form.fields.find{|f| f.name == 'voice'}.value = (rand(3)+1).to_s # '1'..'3'
+        form.fields.find{|f| f.name == 'tempo'}.value = '0' # omakase
         result1_page = agent.submit(form)
         result1_form = result1_page.form_with(:name => 'go')
         result2_page = agent.submit(result1_form)
