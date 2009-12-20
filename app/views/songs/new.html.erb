@@ -1,5 +1,7 @@
 <h1>orpheus_tw</h1>
-
+<!-- **** --><% if true %>
+<!-- **** --><p>システム改良中です</p>
+<!-- **** --><% else %>
 <% form_for(@song) do |f| %>
   <%= f.error_messages %>
   <p>
@@ -12,6 +14,7 @@
     <%= f.submit '作曲する' %>
   </p>
 <% end %>
+<!-- **** --><% end %>
 
 <a name="about"></a>
 <h2>これは何？</h2>
